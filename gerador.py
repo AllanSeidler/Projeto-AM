@@ -5,8 +5,8 @@ import pandas as pd
 cards = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
 
 class Jogo():
-    fp1 = open('mentiu.csv','at',encoding='UTF-8')
-    fp2 = open('duvidou.csv','at',encoding='UTF-8')
+    fp1 = open('csv/mentiu.csv','at',encoding='UTF-8')
+    fp2 = open('csv/duvidou.csv','at',encoding='UTF-8')
 
     def __init__(self):
         # JOGADOR
@@ -46,12 +46,28 @@ class Jogo():
 
 
 
-if __name__=='__main__':
-    
-    for i in range(int(input('n?'))):
-        Jogo().imprime()
-        
 
+def remove_duplicados(fn:str):
+    # Carregar o CSV
+    df = pd.read_csv(fn)
+
+    # Remover duplicados
+    df_sem_duplicados = df.drop_duplicates()
+
+    # Salvar o resultado em um novo arquivo
+    df_sem_duplicados.to_csv(fn, index=False)
+
+
+if __name__=='__main__':
+
+    
+    
+    for i in range(0,int(input('Inserir mais quantos jogos? '))):
+        Jogo().imprime()
+
+        
+    remove_duplicados('csv/duvidou.csv')
+    remove_duplicados('csv/mentiu.csv')
     
 
 
