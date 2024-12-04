@@ -2,8 +2,6 @@ import random as rd
 import pandas as pd
 
 
-cards = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
-
 class Jogo():
     fp1 = open('csv/mentiu.csv','at',encoding='UTF-8')
     fp2 = open('csv/duvidou.csv','at',encoding='UTF-8')
@@ -28,19 +26,19 @@ class Jogo():
         
         # PILHA
         self.descarte=mao_duvidador= self.total_jogada + rd.randint(0,52-self.mao_jogador-self.mao_duvidador) # cartas na pilha de descarte
-        self.carta = rd.choice(cards) # valor que deve ser jogado
+        self.carta = rd.randint(1,13) # valor que deve ser jogado
 
     
     def imprime(self):
         if(Jogo.fp1.tell()==0):
-            Jogo.fp1.write("Carta, Descarte, Tam. mão P1, Cartas jogadas, Tam. mão P2, Qtd. valor P2, Mentiu\n")
-        Jogo.fp1.write(f'{self.carta}, {self.descarte}, {self.mao_jogador}, {self.total_jogada}, {self.mao_duvidador}, '+
-            f'{self.qtd_do_valor_na_mao_duvidador}, {self.mentiu}\n')
+            Jogo.fp1.write("carta,descarte,tam_mao_p1,cartas_jogadas,tam_mao_p2,qtd_valor_p2,mentiu\n")
+        Jogo.fp1.write(f'{self.carta},{self.descarte},{self.mao_jogador},{self.total_jogada},{self.mao_duvidador},'+
+            f'{self.qtd_do_valor_na_mao_duvidador},{self.mentiu}\n')
         
         if(Jogo.fp2.tell()==0):
-            Jogo.fp2.write("Carta, Descarte, Tam. mão P1, Cartas jogadas, Qtd valor P1, Qtd valor jogado, Mentiu, Tam. mão P2, Duvidou\n")
-        Jogo.fp2.write(f'{self.carta}, {self.descarte}, {self.mao_jogador}, {self.total_jogada}, {self.qtd_do_valor_na_mao}, {self.qtd_do_valor_jogado}, '+
-            f'{self.mentiu}, {self.mao_duvidador}, {self.duvidou}\n')
+            Jogo.fp2.write("carta,descarte,tam_mao_p1,cartas_jogadas,qtd_valor_p1,qtd_valor_jogado,mentiu,tam_mao_p2,duvidou\n")
+        Jogo.fp2.write(f'{self.carta},{self.descarte},{self.mao_jogador},{self.total_jogada},{self.qtd_do_valor_na_mao},{self.qtd_do_valor_jogado}, '+
+            f'{self.mentiu},{self.mao_duvidador},{self.duvidou}\n')
         
     
 
@@ -57,6 +55,9 @@ def remove_duplicados(fn:str):
     # Salvar o resultado em um novo arquivo
     df_sem_duplicados.to_csv(fn, index=False)
 
+    # pd.DataFrame(df)
+    print(df_sem_duplicados)
+
 
 if __name__=='__main__':
 
@@ -66,8 +67,8 @@ if __name__=='__main__':
         Jogo().imprime()
 
         
-    remove_duplicados('csv/duvidou.csv')
     remove_duplicados('csv/mentiu.csv')
+    remove_duplicados('csv/duvidou.csv')
     
 
 
