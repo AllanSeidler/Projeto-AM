@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.model_selection import KFold
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 import pandas as pd
@@ -39,7 +39,7 @@ if __name__=='__main__':
     y = arquivo['duvidou']
     X = arquivo.drop('duvidou', axis = 1)
 
-    kf = StratifiedKFold(n_splits=5, shuffle=False) # StratifiedKFold com 5 divisões
+    kf = KFold(n_splits=5, shuffle=False) # KFold com 5 divisões
     knn = KNeighborsClassifier(n_neighbors=3) # modelo K-Nearest Neighbors (KNN)
     mat = matriz_confusao_media(knn,X,y,kf)
 
