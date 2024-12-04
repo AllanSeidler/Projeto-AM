@@ -40,14 +40,14 @@ if __name__=='__main__':
     X = arquivo.drop('mentiu', axis = 1)
 
     kf = StratifiedKFold(n_splits=5, shuffle=False) # StratifiedKFold com 5 divisões
-    knn = KNeighborsClassifier(n_neighbors=3) # modelo K-Nearest Neighbors (KNN)
+    knn = KNeighborsClassifier(n_neighbors=11) # modelo K-Nearest Neighbors (KNN)
     mat = matriz_confusao_media(knn,X,y,kf)
 
 
     accuracy = (mat[0][0]+mat[1][1]) / (mat[0][0]+mat[1][0]+mat[0][1]+mat[1][1])
     precision = (mat[1][1]) / (mat[1][1]+mat[0][1])
     recall = (mat[1][1]) / (mat[1][1]+mat[1][0])
-    
+
     print(f'\nAcurácia: {accuracy:.3f}')
     print(f'Precisão: {precision:.3f}')
     print(f'Recall: {recall:.3f}\n')

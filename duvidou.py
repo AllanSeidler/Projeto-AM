@@ -40,7 +40,7 @@ if __name__=='__main__':
     X = arquivo.drop('duvidou', axis = 1)
 
     kf = KFold(n_splits=5, shuffle=False) # KFold com 5 divisões
-    knn = KNeighborsClassifier(n_neighbors=3) # modelo K-Nearest Neighbors (KNN)
+    knn = KNeighborsClassifier(n_neighbors=11) # modelo K-Nearest Neighbors (KNN)
     mat = matriz_confusao_media(knn,X,y,kf)
 
 
