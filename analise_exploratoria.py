@@ -44,13 +44,29 @@ def cartas_e_valores(df): # Cartas jogadas e valor correspondente nas mãos
 
 if __name__=='__main__':
     df = pd.read_csv('csv/mentiu.csv')
+    
 
     # Visão geral do dataset
     print("Dimensões do dataset:", df.shape)
     print("Colunas do dataset:", df.columns)
-    df.hist(bins=30, figsize=(10, 8))
-    plt.show()
+    # df.hist(bins=30, figsize=(10, 8))
+    # plt.show()
     
-    cartas_e_valores(df)
+    # cartas_e_valores(df)
 
+    df = pd.read_csv('csv/duvidou.csv')
+    m = [[0,0],[0,0]]
+
+
+    for a in range(len(df)):
+        
+        if df['mentiu'][a]: i=0
+        else: i=1
+        if df['duvidou'][a]: j=0
+        else: j=1
+
+        m[i][j]+=1
+
+    print(m[0])
+    print(m[1])
     
