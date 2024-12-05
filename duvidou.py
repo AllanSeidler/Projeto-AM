@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 
 
-
 def matriz_confusao_media(model, X, y, kf):
     n_classes = len(np.unique(y))
     total_confusion_matrix = np.zeros((n_classes, n_classes), dtype=int)
@@ -31,7 +30,6 @@ def matriz_confusao_media(model, X, y, kf):
     print("+---------------------------+")
     
     return avg_confusion_matrix
-
 
 
 if __name__=='__main__':    
